@@ -40,16 +40,16 @@ docker-compose -v
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh
 
 # 回复确认
-echo "y" | ./installer.sh
+yes y | ./installer.sh >/dev/null 2>&1
 
 # 设置密码
-echo "778899" | ./installer.sh
-echo "1988" | ./installer.sh
+echo -n "778899" | ./installer.sh -s >/dev/null 2>&1
+echo -n "1988" | ./installer.sh -s >/dev/null 2>&1
 
 # 添加自定义路径或安装到根目录
-echo "" | ./installer.sh
-echo "" | ./installer.sh
-echo "" | ./installer.sh
+echo -n "" | ./installer.sh -s >/dev/null 2>&1
+echo -n "" | ./installer.sh -s >/dev/null 2>&1
+echo -n "" | ./installer.sh -s >/dev/null 2>&1
 
 # 防火墙设置
 sudo firewall-cmd --permanent --add-service=ssh
