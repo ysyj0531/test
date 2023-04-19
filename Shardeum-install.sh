@@ -36,7 +36,8 @@ docker-compose -v
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh
 
 # 回复确认
-yes y | ./installer.sh >/dev/null 2>&1
+echo -n "y" | ./installer.sh -s >/dev/null 2>&1
+echo -n "y" | ./installer.sh -s >/dev/null 2>&1
 
 # 设置密码
 echo -n "778899" | ./installer.sh -s >/dev/null 2>&1
