@@ -35,7 +35,6 @@ docker-compose -v
 # 开始节点程序安装
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh
 
-
 # 防火墙设置
 sudo firewall-cmd --zone=docker --add-service=ssh
 sudo firewall-cmd --zone=docker --add-port=1988/tcp
