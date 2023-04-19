@@ -37,10 +37,9 @@ docker -v
 docker-compose -v
 
 # 开始节点程序安装
-curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
+curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh
 
 # 回复确认
-echo "y" | ./installer.sh
 echo "y" | ./installer.sh
 
 # 设置密码
