@@ -49,11 +49,11 @@ echo -n "" | ./installer.sh -s >/dev/null 2>&1
 echo -n "" | ./installer.sh -s >/dev/null 2>&1
 
 # 防火墙设置
-sudo firewall-cmd --permanent --add-service=ssh
-sudo firewall-cmd --permanent --add-port=1988/tcp
-sudo firewall-cmd --permanent --add-service=https
-sudo firewall-cmd --permanent --add-service=http
-sudo firewall-cmd --permanent --add-port=443/tcp
+sudo firewall-cmd --zone=docker --add-service=ssh
+sudo firewall-cmd --zone=docker --add-port=1988/tcp
+sudo firewall-cmd --zone=docker --add-service=https
+sudo firewall-cmd --zone=docker --add-service=http
+sudo firewall-cmd --zone=docker --add-port=443/tcp
 sudo firewall-cmd --reload
 sudo systemctl enable firewalld
 sudo systemctl start firewalld
