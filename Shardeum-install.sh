@@ -33,7 +33,7 @@ docker -v
 docker-compose -v
 
 # 开始节点程序安装
-echo -e "y\ny\n778899\n1988\n\n\n\n" | curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && echo -e "y\n778899\n1988\n\n\n" | ./installer.sh -s
+curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
 
 
 # 防火墙设置
