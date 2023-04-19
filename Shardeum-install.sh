@@ -35,19 +35,6 @@ docker-compose -v
 # 开始节点程序安装
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh
 
-# 回复确认
-echo -n "y" | ./installer.sh -s >/dev/null 2>&1
-echo -n "y" | ./installer.sh -s >/dev/null 2>&1
-
-# 设置密码
-echo -n "778899" | ./installer.sh -s >/dev/null 2>&1
-echo -n "1988" | ./installer.sh -s >/dev/null 2>&1
-
-# 添加自定义路径或安装到根目录
-echo -n "" | ./installer.sh -s >/dev/null 2>&1
-echo -n "" | ./installer.sh -s >/dev/null 2>&1
-echo -n "" | ./installer.sh -s >/dev/null 2>&1
-
 # 防火墙设置
 sudo firewall-cmd --permanent --add-service=ssh
 sudo firewall-cmd --permanent --add-port=1988/tcp
