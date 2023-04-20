@@ -14,7 +14,7 @@ for (( i=20; i>0; i-- )); do
     fi
 done
 # 安装yum
-wget http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz
+curl -O http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz
 tar xvf yum-3.4.3.tar.gz
 cd yum-3.4.3
 python yummain.py install yum
