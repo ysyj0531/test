@@ -64,6 +64,6 @@ EXTERNAL_IP=$(curl -s ifconfig.me)
 # 输出仪表盘链接信息
 echo "安装完毕！！！"
 echo "如果提示安装成功还无法打开网页，请检查服务器安全组是否禁止了1988、9001、10001端口，如果有，请关闭安全组并打开端口。"
-echo "请通过 https://$EXTERNAL_IP:1988 或 http://$EXTERNAL_IP:1988打开仪表盘网页"
+echo "请通过 https://$EXTERNAL_IP:1988 或 http://$EXTERNAL_IP:1988  打开仪表盘网页"
 echo "shardeum节点仪表盘密码：778899"
 
