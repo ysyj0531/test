@@ -18,6 +18,7 @@ curl -O http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz
 tar xvf yum-3.4.3.tar.gz
 cd yum-3.4.3
 python yummain.py install yum
+cd /root
 
 # 更新服务器
 sudo yum update -y
