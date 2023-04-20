@@ -17,6 +17,9 @@ done
 # 更新服务器
 sudo yum update -y
 
+# 安装git
+yum install git
+
 # 安装yum-utils，docker依赖程序
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
