@@ -44,7 +44,7 @@ curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh 
 
 # 防火墙设置
 sudo firewall-cmd --zone=docker --add-service=ssh
-sudo firewall-cmd --zone=docker --add-port=1988/tcp
+sudo firewall-cmd --zone=docker --add-port=8080/tcp
 sudo firewall-cmd --zone=docker --add-service=https
 sudo firewall-cmd --zone=docker --add-service=http
 sudo firewall-cmd --zone=docker --add-port=443/tcp
