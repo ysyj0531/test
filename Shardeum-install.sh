@@ -14,6 +14,7 @@ for (( i=20; i>0; i-- )); do
     fi
 done
 
+
 # 更新服务器
 sudo yum update -y
 
