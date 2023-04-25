@@ -21,8 +21,18 @@ for (( i=20; i>0; i-- )); do
 done
 # 更新服务器
 sudo apt update && apt upgrade -y
+
 # 安装软件包
 sudo apt-get install ca-certificates curl gnupg lsb-release
+
+# 防火墙设置
+ufw allow ssh
+ufw allow 9001
+ufw allow 10001
+ufw allow https
+ufw allow http
+ufw allow 443
+ufw enable
 
 # 添加 Docker GPG 密钥
 sudo mkdir -p /etc/apt/keyrings
@@ -69,14 +79,13 @@ cd ~/.shardeum
 # 通过运行 shell 脚本启动 CLI
 ./shell.sh
 
-# 显示启动界面
+# 更新并显示启动界面
+operator-cli status
+operator-cli disable
 operator-cli gui start
 
 # 检查 pm2 列表
 pm2 list
-
-# 显示信息
-operator-cli status
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
