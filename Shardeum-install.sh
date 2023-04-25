@@ -52,11 +52,11 @@ curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh 
 
 
 # 防火墙设置
-ufw allow ssh
-ufw allow 8080/tcp
-ufw allow https
-ufw allow http
-ufw allow 443
+sudo ufw allow ssh
+sudo ufw allow 8080/tcp
+sudo ufw allow https
+sudo ufw allow http
+sudo ufw allow 443
 
 
 # 转到隐藏的 Shardeum 目录
