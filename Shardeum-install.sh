@@ -57,7 +57,7 @@ ufw allow 8080/tcp
 ufw allow https
 ufw allow http
 ufw allow 443
-ufw enable
+
 
 # 转到隐藏的 Shardeum 目录
 cd
