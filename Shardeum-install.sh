@@ -73,4 +73,7 @@ echo "如果提示安装成功还无法打开网页，请检查服务器安全�
 echo "请通过 https://$EXTERNAL_IP:+设置的端口 （默认为8080）打开仪表盘网页"
 echo "shardeum节点仪表盘密码：你设置的密码"
 echo "shardeum节更新请重新运行本脚本，注意解除质押"
+cd /root
+rm Shardeum-install.sh
+rm Shardeum-install.sh
 
