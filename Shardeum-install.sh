@@ -31,7 +31,6 @@ sudo apt-get install ca-certificates curl gnupg lsb-release
 ufw allow 9001
 ufw allow 10001
 ufw allow 3001
-ufw enable
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
