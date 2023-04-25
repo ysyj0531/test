@@ -41,10 +41,8 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 sudo apt-get update
 
 # 安装 Docker 和 Docker Compose
-apt update -y
-apt install -y docker-ce docker-ce-cli containerd.io
-curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt install docker-compose
 
 # 检查 Docker 版本
 docker -v
