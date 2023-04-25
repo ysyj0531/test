@@ -63,9 +63,10 @@ cd
 cd ~/.shardeum
 
 # 通过运行 shell 脚本启动 CLI
-./shell.sh "operator-cli gui start" &
-wait $!
-exit 0
+./shell.sh "operator-cli gui start" 
+
+# 切换用户
+su
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
