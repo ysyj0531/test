@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# 检查是否为root用户
+if [ "$EUID" -ne 0 ]
+  then echo "请使用root用户运行脚本！"
+  exit
+fi
+
 # 提示信息
 echo "shardeum节点自动化部署脚本，此脚本安装系统为Ubuntu，建议硬件设备为4核CPU-4GB内存-40GB存储空间。提示：该脚本安装时间较长（初次安装预计时间为10-15分钟，占用5-7GB空间），现在开始20秒钟等待确认时间，如果选择不安装请运行Ctrl+C键退出"
 echo ""
@@ -15,41 +21,41 @@ for (( i=20; i>0; i-- )); do
 done
 
 # 更新服务器
-sudo apt update -y
-sudo apt upgrade -y
+apt update -y
+apt upgrade -y
 
 # 安装软件包
-sudo apt install -y git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+apt install -y git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
 # 添加 Docker GPG 密钥
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 # 添加 Docker 软件源
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # 安装 Docker 和 Docker Compose
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+apt update -y
+apt install -y docker-ce docker-ce-cli containerd.io
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 # 检查 Docker 版本
 docker -v
 docker-compose -v
 
 # 启动 Docker
-sudo systemctl start docker
+systemctl start docker
 
 # 开始节点程序安装
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
 
 # 防火墙设置
-sudo ufw allow ssh
-sudo ufw allow 8080/tcp
-sudo ufw allow https
-sudo ufw allow http
-sudo ufw allow 443/tcp
-sudo ufw enable
+ufw allow ssh
+ufw allow 8080/tcp
+ufw allow https
+ufw allow http
+ufw allow 443/tcp
+ufw enable
 
 # 转到隐藏的 Shardeum 目录
 cd ~/.shardeum
