@@ -53,15 +53,13 @@ ufw allow 8080
 ufw allow https
 ufw allow http
 ufw allow 443
-ufw enable
-
 
 # 转到隐藏的 Shardeum 目录
 cd
 cd ~/.shardeum
 
 # 通过运行 shell 脚本启动 CLI
-nohup ./shell.sh & "operator-cli gui start"
+nohup ./shell.sh "operator-cli gui start" &
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
