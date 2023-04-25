@@ -27,10 +27,6 @@ sudo apt update && apt upgrade -y
 # 安装软件包
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
-# 防火墙设置
-sudo ufw allow 9001/tcp
-sudo ufw allow 10001/tcp
-sudo ufw allow 3001/tcp
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -57,7 +53,7 @@ sudo ufw allow 8080/tcp
 sudo ufw allow https
 sudo ufw allow http
 sudo ufw allow 443
-
+sudo ufw enable
 
 # 转到隐藏的 Shardeum 目录
 cd
