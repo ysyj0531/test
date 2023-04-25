@@ -38,7 +38,7 @@ sudo apt install docker-compose
 # 检查 Docker 版本添加权限
 docker -v
 docker-compose -v
-sudo chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 
 # 启动 Docker
 systemctl start docker
