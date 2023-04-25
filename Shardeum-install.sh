@@ -48,13 +48,12 @@ curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh 
 
 
 # 防火墙设置
-systemctl enable ufw
 ufw allow ssh
-ufw allow 8080/tcp
+ufw allow 8080
 ufw allow https
 ufw allow http
 ufw allow 443
-ufw --force enable
+ufw enable
 
 
 # 转到隐藏的 Shardeum 目录
