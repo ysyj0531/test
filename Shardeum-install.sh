@@ -19,6 +19,8 @@ for (( i=20; i>0; i-- )); do
         exit
     fi
 done
+
+sudo apt-get install curl
 # 更新服务器
 sudo apt update && apt upgrade -y
 
@@ -29,6 +31,7 @@ sudo apt-get install ca-certificates curl gnupg lsb-release
 ufw allow ssh
 ufw allow 9001
 ufw allow 10001
+ufw allow 3001
 ufw allow https
 ufw allow http
 ufw allow 443
@@ -41,22 +44,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-# 设置储存库
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  
-# 在更新索引之前，尝试授权 Docker 公钥文件的读取权限
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-sudo apt-get update
-
 # 安装 Docker 和 Docker Compose
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo apt install docker-compose
 
-# 检查 Docker 版本
+# 检查 Docker 版本添加权限
 docker -v
 docker-compose -v
+sudo chmod +x /usr/local/bin/docker-compose
 
 # 启动 Docker
 systemctl start docker
@@ -74,6 +69,7 @@ ufw allow 443
 ufw enable
 
 # 转到隐藏的 Shardeum 目录
+cd
 cd ~/.shardeum
 
 # 通过运行 shell 脚本启动 CLI
