@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 提示信息
-echo "shardeum节点自动化部署脚本，此脚本安装系统为CentOS 7.6，建议硬件设备为4核CPU-4GB内存-40GB存储空间。提示：该脚本安装时间较长（初次安装预计时间为10-15分钟，占用5-7GB空间），现在开始20秒钟等待确认时间，如果选择不安装请运行Ctrl+C键退出"
+echo "shardeum节点自动化部署脚本，此脚本安装系统为xxxxx，建议硬件设备为4核CPU-4GB内存-40GB存储空间。提示：该脚本安装时间较长（初次安装预计时间为10-15分钟，占用5-7GB空间），现在开始20秒钟等待确认时间，如果选择不安装请运行Ctrl+C键退出"
 echo ""
 
 # 20秒等待用户确认，如果用户在此期间输入Ctrl+C，则退出脚本
@@ -18,9 +18,10 @@ done
 # 更新服务器
 sudo yum update -y
 
-# 安装git
+# 安装
 yum install git
-
+yum install apt
+sudo apt-get update
 # 安装yum-utils，docker依赖程序
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
