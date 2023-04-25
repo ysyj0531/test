@@ -18,9 +18,12 @@ for (( i=20; i>0; i-- )); do
     fi
 done
 
-sudo apt-get install curl
+
 # 更新服务器
 sudo apt update && apt upgrade -y
+
+# 安装curl
+sudo apt-get install curl
 
 # 安装软件包
 sudo apt-get install ca-certificates curl gnupg lsb-release
