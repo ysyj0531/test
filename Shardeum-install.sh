@@ -1,41 +1,44 @@
-#!/usr/bin/expect -f
-
 # 检查是否为root用户
-if {[geteuid] != 0} {
-    puts "请使用root用户运行脚本！"
-    exit
-}
+if [ "$EUID" -ne 0 ]
+  then echo "请使用root用户运行脚本！"
+  exit
+fi
 
 # 提示信息
-puts "shardeum节点自动化部署脚本，此脚本安装系统为Ubuntu，建议硬件设备为4核CPU-4GB内存-40GB存储空间。提示：该脚本安装时间较长（初次安装预计时间为10-15分钟，占用5-7GB空间），现在开始20秒钟等待确认时间，如果选择不安装请运行Ctrl+C键退出\n"
+echo "shardeum节点自动化部署脚本，此脚本安装系统为Ubuntu，建议硬件设备为4核CPU-4GB内存-40GB存储空间。提示：该脚本安装时间较长（初次安装预计时间为10-15分钟，占用5-7GB空间），现在开始20秒钟等待确认时间，如果选择不安装请运行Ctrl+C键退出"
+echo ""
 
 # 20秒等待用户确认，如果用户在此期间输入Ctrl+C，则退出脚本
-for {set i 20} {$i > 0} {incr i -1} {
-    puts -nonewline "等待用户确认时间：$i\r"
-    sleep 1
-    if {[catch {set key [read stdin 3]}] == 0} {
-        if {$key eq "\x1bw"} {
-            puts "\n已选择退出脚本！"
-            exit
-        }
-    }
-}
+for (( i=20; i>0; i-- )); do
+    echo -ne "等待用户确认时间：$i\033[0K\r"
+    read -t 1 -n 3 key
+    if [[ $key = $'\033w' ]]; then
+        echo -e "\n已选择退出脚本！"
+        exit
+    fi
+done
+
+sudo apt-get install curl
+# 更新服务器
+sudo apt update && apt upgrade -y
+
+# 安装软件包
+sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # 安装expect命令
-apt-get update
-apt-get -y install expect
+sudo apt-get install expect
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # 安装 Docker 和 Docker Compose
-apt-get update
-apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt install docker-compose
 
 # 检查 Docker 版本添加权限
 docker -v
 docker-compose -v
-chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 # 启动 Docker
 systemctl start docker
