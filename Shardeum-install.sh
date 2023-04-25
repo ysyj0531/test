@@ -53,7 +53,7 @@ sudo ufw allow 8080/tcp
 sudo ufw allow https
 sudo ufw allow http
 sudo ufw allow 443
-sudo ufw enable
+
 
 # 转到隐藏的 Shardeum 目录
 cd
@@ -63,12 +63,8 @@ cd ~/.shardeum
 ./shell.sh
 
 # 更新并显示启动界面
-operator-cli status
-operator-cli disable
 operator-cli gui start
 
-# 检查 pm2 列表
-pm2 list
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
