@@ -28,9 +28,9 @@ sudo apt update && apt upgrade -y
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # 防火墙设置
-ufw allow 9001
-ufw allow 10001
-ufw allow 3001
+sudo ufw allow 9001/tcp
+sudo ufw allow 10001/tcp
+sudo ufw allow 3001/tcp
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -53,7 +53,7 @@ curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh 
 
 # 防火墙设置
 ufw allow ssh
-ufw allow 8080
+ufw allow 8080/tcp
 ufw allow https
 ufw allow http
 ufw allow 443
