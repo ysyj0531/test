@@ -28,13 +28,9 @@ sudo apt update && apt upgrade -y
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # 防火墙设置
-ufw allow ssh
 ufw allow 9001
 ufw allow 10001
 ufw allow 3001
-ufw allow https
-ufw allow http
-ufw allow 443
 ufw enable
 
 # 添加 Docker 软件源
