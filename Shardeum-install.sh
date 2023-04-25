@@ -44,7 +44,7 @@ sudo chmod +x /usr/bin/docker-compose
 systemctl start docker
 
 # 开始节点程序安装
-curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh
+curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
 
 
 # 防火墙设置
