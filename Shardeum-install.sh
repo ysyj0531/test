@@ -28,7 +28,7 @@ sudo apt update && apt upgrade -y
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # 安装expect命令
-sudo apt-get update && sudo apt-get install expect
+sudo apt-get install expect
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
