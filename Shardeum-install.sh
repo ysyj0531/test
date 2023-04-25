@@ -27,6 +27,8 @@ sudo apt update && apt upgrade -y
 # 安装软件包
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
+# 安装expect命令
+sudo apt-get update && sudo apt-get install expect
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -44,7 +46,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 systemctl start docker
 
 # 开始节点程序安装
-echo -e "\n\n778899\n1988\n\n\n\n" | curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
+curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
 
 
 
@@ -61,10 +63,9 @@ cd
 cd ~/.shardeum
 
 # 通过运行 shell 脚本启动 CLI
-./shell.sh "operator-cli gui start"
-
-# 退出脚本
-exit
+./shell.sh "operator-cli gui start" &
+wait $!
+exit 0
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
