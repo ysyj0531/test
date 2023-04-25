@@ -19,19 +19,26 @@ for (( i=20; i>0; i-- )); do
         exit
     fi
 done
-
 # 更新服务器
-apt update -y
-apt upgrade -y
-
+sudo apt update && apt upgrade -y
 # 安装软件包
-apt install -y git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # 添加 Docker GPG 密钥
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 # 添加 Docker 软件源
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# 设置储存库
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+# 在更新索引之前，尝试授权 Docker 公钥文件的读取权限
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+sudo apt-get update
 
 # 安装 Docker 和 Docker Compose
 apt update -y
@@ -49,12 +56,13 @@ systemctl start docker
 # 开始节点程序安装
 curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh && chmod +x installer.sh && ./installer.sh
 
+
 # 防火墙设置
 ufw allow ssh
-ufw allow 8080/tcp
+ufw allow 8080
 ufw allow https
 ufw allow http
-ufw allow 443/tcp
+ufw allow 443
 ufw enable
 
 # 转到隐藏的 Shardeum 目录
@@ -68,6 +76,9 @@ operator-cli gui start
 
 # 检查 pm2 列表
 pm2 list
+
+# 显示信息
+operator-cli status
 
 # 获取本地 IP 地址
 EXTERNAL_IP=$(curl -s ifconfig.me)
