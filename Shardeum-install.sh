@@ -44,41 +44,8 @@ sudo chmod +x /usr/bin/docker-compose
 systemctl start docker
 
 # 开始节点程序安装
-spawn curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh
-expect {
-    "continue" {
-        send "\r"
-        exp_continue
-    }
-    "Destination" {
-        send "\r"
-        exp_continue
-    }
-    "Enter your node name" {
-        send "778899\r"
-        exp_continue
-    }
-    "Enter your node description" {
-        send "1988\r"
-        exp_continue
-    }
-    "please enter your email" {
-        send "\r"
-        exp_continue
-    }
-    "press enter to generate new private key or enter the existing private key" {
-        send "\r"
-        exp_continue
-    }
-    "enter your private key" {
-        send "\r"
-        exp_continue
-    }
-    "are you sure you want to start the node" {
-        send "\r"
-        exp_continue
-    }
-}
+curl -O https://gitlab.com/shardeum/validator/dashboard/-/raw/main/installer.sh
+
 
 # 防火墙设置
 systemctl enable ufw
